@@ -13,8 +13,10 @@ services:
       - PGID=1000
       - VERSION=docker
     volumes:
-      - /storage/media/movies:/data/movies
-      - /storage/media/tvshows:/data/tvshows
+      - /storage/media/Movies:/data/movies
+      - /storage/media/Series:/data/tvshows
+      - /storage/media/Anime:/data/anime
+      - /storage/media/Audiobooks:/data/audiobooks
       - /opt/yams/config/plex:/config
     tmpfs:
       - /transcode
@@ -54,9 +56,10 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/tvshows:/tv
+      - /storage/media/Movies:/data/movies
+      - /storage/media/Series:/data/tvshows
+      - /storage/media/Anime:/data/anime
       - /storage/media/downloads:/downloads
-      - /storage/media/movies:/movies
       - /opt/yams/config/overseerr:/config
     ports:
       - 5055:5055
@@ -73,7 +76,8 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/tvshows:/tv
+      - /storage/media/Series:/tv
+      - /storage/media/Anime:/anime
       - /storage/media/downloads:/downloads
       - /opt/yams/config/sonarr:/config
     ports:
@@ -90,7 +94,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/movies:/movies
+      - /storage/media/Movies:/movies
       - /storage/media/downloads:/downloads
       - /opt/yams/config/radarr:/config
     ports:
@@ -142,8 +146,9 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/movies:/movies
-      - /storage/media/tvshows:/tv
+      - /storage/media/Movies:/movies
+      - /storage/media/Series:/tv
+      - /storage/media/Anime:/anime
       - /opt/yams/config/bazarr:/config
     ports:
       - 6767:6767
@@ -236,9 +241,10 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/tvshows:/tv
+      - /storage/media/Series:/tv
+      - /storage/media/Movies:/movies
       - /storage/media/downloads:/downloads
-      - /storage/media/movies:/movies
+      - /storage/media/Anime:/anime
       - /opt/yams/config/tautulli:/config
     ports:
       - 8181:8181
