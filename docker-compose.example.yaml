@@ -13,10 +13,10 @@ services:
       - PGID=1000
       - VERSION=docker
     volumes:
-      - /storage/media/Movies:/data/movies
-      - /storage/media/Series:/data/tvshows
-      - /storage/media/Anime:/data/anime
-      - /storage/media/Audiobooks:/data/audiobooks
+      - <media_folder>/Movies:/data/movies
+      - <media_folder>/Series:/data/tvshows
+      - <media_folder>/Anime:/data/anime
+      - <media_folder>/Audiobooks:/data/audiobooks
       - /opt/yams/config/plex:/config
     tmpfs:
       - /transcode
@@ -37,7 +37,7 @@ services:
       - PGID=1000
       - WEB_UI_PORT=8080
     volumes:
-      - /storage/media/downloads:/downloads
+      - <media_folder>/downloads:/downloads
       - /opt/yams/config/qbittorrent:/config
     restart: unless-stopped
     ports: # qbittorrent
@@ -56,10 +56,10 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/Movies:/data/movies
-      - /storage/media/Series:/data/tvshows
-      - /storage/media/Anime:/data/anime
-      - /storage/media/downloads:/downloads
+      - <media_folder>/Movies:/data/movies
+      - <media_folder>/Series:/data/tvshows
+      - <media_folder>/Anime:/data/anime
+      - <media_folder>/downloads:/downloads
       - /opt/yams/config/overseerr:/config
     ports:
       - 5055:5055
@@ -76,9 +76,9 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/Series:/tv
-      - /storage/media/Anime:/anime
-      - /storage/media/downloads:/downloads
+      - <media_folder>/Series:/tv
+      - <media_folder>/Anime:/anime
+      - <media_folder>/downloads:/downloads
       - /opt/yams/config/sonarr:/config
     ports:
       - 8989:8989
@@ -94,8 +94,8 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/Movies:/movies
-      - /storage/media/downloads:/downloads
+      - <media_folder>/Movies:/movies
+      - <media_folder>/downloads:/downloads
       - /opt/yams/config/radarr:/config
     ports:
       - 7878:7878
@@ -110,8 +110,8 @@ services:
 #      - PUID=1000
 #      - PGID=1000
 #    volumes:
-#      - /storage/media/music:/music
-#      - /storage/media/downloads:/downloads
+#      - <media_folder>/music:/music
+#      - <media_folder>/downloads:/downloads
 #      - /opt/yams/config/lidarr:/config
 #    ports:
 #      - 8686:8686
@@ -128,8 +128,8 @@ services:
 #      - PUID=1000
 #      - PGID=1000
 #    volumes:
-#      - /storage/media/books:/books
-#      - /storage/media/downloads:/downloads
+#      - <media_folder>/books:/books
+#      - <media_folder>/downloads:/downloads
 #      - /opt/yams/config/readarr:/config
 #    ports:
 #      - 8787:8787
@@ -146,9 +146,9 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/Movies:/movies
-      - /storage/media/Series:/tv
-      - /storage/media/Anime:/anime
+      - <media_folder>/Movies:/movies
+      - <media_folder>/Series:/tv
+      - <media_folder>/Anime:/anime
       - /opt/yams/config/bazarr:/config
     ports:
       - 6767:6767
@@ -241,10 +241,10 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /storage/media/Series:/tv
-      - /storage/media/Movies:/movies
-      - /storage/media/downloads:/downloads
-      - /storage/media/Anime:/anime
+      - <media_folder>/Series:/tv
+      - <media_folder>/Movies:/movies
+      - <media_folder>/downloads:/downloads
+      - <media_folder>/Anime:/anime
       - /opt/yams/config/tautulli:/config
     ports:
       - 8181:8181
