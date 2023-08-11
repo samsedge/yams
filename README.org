@@ -1,8 +1,8 @@
 #+title: YAMS: Yet Another Media Server
 
-@@html:<img src="https://visitor-badge.laobi.icu/badge?page_id=rogs.yams" alt="visitor badge"/>@@
 
-This is a highly opinionated media server.
+
+This is a (SHAMELESS RIP) of highly opinionated media server.
 
 Website: [[https://yams.media][https://yams.media]]
 
@@ -23,6 +23,11 @@ This script installs the following software:
 - [[https://github.com/Prowlarr/Prowlarr][Prowlarr]]
 - [[https://github.com/qdm12/gluetun][gluetun]]
 - [[https://www.portainer.io/][Portainer]]
+- Cloudflared
+- openspeedtest
+- Heimdall
+- Tautulli
+- SCrutiny
 
 With this combination, you can create a fully functional media server that is going to download,
 categorize, subtitle and serve your favorite shows, movies, audio and books.
