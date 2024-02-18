@@ -1,0 +1,57 @@
+version: "3"
+
+services: 
+# Add your container here 👇 
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    environment:
+      - PUID=${PUID} # Note how I'm using the env variables here
+      - PGID=${PGID} # Note how I'm using the env variables here
+    volumes:
+      - ${INSTALL_DIRECTORY}/config/overseer:/config # Note how I'm using the env variables here
+    ports:
+      - 5055:5055
+    restart: unless-stopped
+#cloudflare connector
+  cloudflare:
+    image: cloudflare/cloudflared
+    container_name: cloudflare
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=
+  #tautulli
+  tautulli:
+    image: lscr.io/linuxserver/tautulli
+    container_name: tautulli
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+    volumes:
+      - ${INSTALL_DIRECTORY}/Series:/tv
+      - ${INSTALL_DIRECTORY}/Movies:/movies
+      - ${INSTALL_DIRECTORY}/downloads:/downloads
+      - ${INSTALL_DIRECTORY}/Anime:/anime
+      - ${INSTALL_DIRECTORY}/config/tautulli:/config
+    ports:
+      - 8181:8181
+    restart: unless-stopped
+
+  # qBitorrent is used to download torrents
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - WEB_UI_PORT=8090
+    volumes:
+      - ${INSTALL_DIRECTORY}/downloads:/downloads
+      - ${INSTALL_DIRECTORY}/config/qbittorrent:/config
+    restart: unless-stopped
+    ports: # qbittorrent
+      - 8090:8090 # qbittorrent web
+      - 6882:6881 # qbittrooent trackers
+      - 6882:6881/udp
+    #network_mode: "service:gluetun"
